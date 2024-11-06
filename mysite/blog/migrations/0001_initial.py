@@ -4,7 +4,6 @@ import django.db.models.deletion
 from django.conf import settings
 from django.db import migrations, models
 
-
 class Migration(migrations.Migration):
 
     initial = True
@@ -22,6 +21,15 @@ class Migration(migrations.Migration):
                 ('content', models.TextField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('status', models.CharField(
+                    max_length=10,
+                    choices=[
+                        ('draft', 'Draft'),
+                        ('published', 'Published'),
+                    ],
+                    default='draft',
+                )),
+                ('slug', models.SlugField(unique=True, blank=True)),
             ],
         ),
     ]
