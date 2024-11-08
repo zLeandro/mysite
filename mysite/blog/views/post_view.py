@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Post
+from ..models.post import Post
 
 class PostView(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')
